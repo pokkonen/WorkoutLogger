@@ -1,8 +1,11 @@
-<<<<<<< HEAD
-# WorkoutLog
-Application to log workouts.
 
+WorkoutLog
+Application to log workouts.
 Using Firebase to store data.
+
+
+
+
 =======
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
