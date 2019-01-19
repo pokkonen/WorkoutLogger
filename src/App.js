@@ -1,18 +1,60 @@
 import React, { Component } from 'react';
 import './App.css';
 import Workout from './Workout/Workout';
+import WorkoutForm from './WorkoutForm/WorkoutForm';
+import { DB_CONFIG } from './Config/config.js';
+import firebase from 'firebase/app';
+import 'firebase/database'
 
 class App extends Component {
   constructor(props) {
     super(props);
+    this.addWorkout = this.addWorkout.bind(this);
+    this.removeWorkout = this.removeWorkout.bind(this);
+
+    this.app = firebase.initializeApp(DB_CONFIG);
+    this.database = this.app.database().ref().child('workouts');
 
     this.state = {
-      workouts: [
-        { id: 1, workoutContent: 'Workout 1 here!'},
-        { id: 2, workoutContent: 'Workout 2 here!'},
-        { id: 3, workoutContent: 'Workout 3 here!'}
-      ],
+      workouts: [],
     }
+  }
+
+  // Initially was componentWillMounted which is not recommended anymore.
+  componentDidMount() {
+    const previousWorkouts = this.state.workouts;
+
+    // DataSnapshot
+    this.database.on('child_added', snap => {
+      previousWorkouts.push({
+        id: snap.key,
+        workoutContent: snap.val().workoutContent,
+      })
+
+      this.setState({
+        workouts: previousWorkouts
+      })
+    })
+
+    this.database.on('child_removed', snap => {
+      for (let i=0; i < previousWorkouts.length; i++) {
+        if (previousWorkouts[i].id === snap.key) {
+          previousWorkouts.splice(i, 1);
+        }
+      }
+      
+      this.setState({
+        workouts: previousWorkouts
+      })
+    })
+  }
+
+  addWorkout(workout) {
+    this.database.push().set({ workoutContent: workout });
+  }
+
+  removeWorkout(workoutId) {
+    this.database.child(workoutId).remove();
   }
 
   render() {
@@ -25,16 +67,18 @@ class App extends Component {
           {
             this.state.workouts.map((workout) => {
               return (
-                <Workout workoutContent={workout.workoutContent} workoutId={workout.id} key={workout.id} />
+                <Workout  workoutContent={workout.workoutContent}
+                          workoutId={workout.id}
+                          key={workout.id}
+                          removeWorkout={this.removeWorkout} />
               )
             })
           }
         </div>
         <div className="workoutsFooter">
-          Footer
+          <WorkoutForm addWorkout={this.addWorkout} />
         </div>
       </div>
-
     );
   }
 }
