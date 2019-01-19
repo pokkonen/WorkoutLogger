@@ -11,12 +11,14 @@ class App extends Component {
     super(props);
     this.addWorkout = this.addWorkout.bind(this);
     this.removeWorkout = this.removeWorkout.bind(this);
+    this.editWorkout = this.editWorkout.bind(this);
 
     this.app = firebase.initializeApp(DB_CONFIG);
     this.database = this.app.database().ref().child('workouts');
 
     this.state = {
       workouts: [],
+      update: false
     }
   }
 
@@ -37,16 +39,37 @@ class App extends Component {
     })
 
     this.database.on('child_removed', snap => {
+
       for (let i=0; i < previousWorkouts.length; i++) {
         if (previousWorkouts[i].id === snap.key) {
           previousWorkouts.splice(i, 1);
         }
       }
-      
+
       this.setState({
         workouts: previousWorkouts
       })
     })
+
+    this.database.on('child_changed', snap => {
+      for (let i=0; i < previousWorkouts.length; i++) {
+        if (previousWorkouts[i].id === snap.key) {
+          previousWorkouts[i].workoutContent = snap.val().workoutContent;
+          previousWorkouts[i].id = snap.key;
+        }
+      }
+      //console.log(previousWorkouts)
+
+
+      this.setState({
+        workouts: previousWorkouts,
+        update: true
+      })
+    })
+  }
+
+  shouldComponentUpdate() {
+    return true
   }
 
   addWorkout(workout) {
@@ -55,6 +78,11 @@ class App extends Component {
 
   removeWorkout(workoutId) {
     this.database.child(workoutId).remove();
+  }
+
+  editWorkout(workoutId, workout) {
+    console.log(this.state.workouts)
+    this.database.child(workoutId).update({ workoutContent: workout });
   }
 
   render() {
@@ -70,7 +98,8 @@ class App extends Component {
                 <Workout  workoutContent={workout.workoutContent}
                           workoutId={workout.id}
                           key={workout.id}
-                          removeWorkout={this.removeWorkout} />
+                          removeWorkout={this.removeWorkout}
+                          editWorkout={this.editWorkout} />
               )
             })
           }
