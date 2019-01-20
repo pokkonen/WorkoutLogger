@@ -1,7 +1,8 @@
+Latest react project, based on Wes Doyles' todo app. Modified to function as a workoutlogger which is a work in progress...
 
 WorkoutLog
 
-Application to log workouts.
+Application to log workouts, do calculations based on different workout(calories, ...), ...
 
 Using Firebase to store data.
 
