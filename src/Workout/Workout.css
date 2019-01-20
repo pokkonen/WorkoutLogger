@@ -1,9 +1,9 @@
 .workout {
-  padding:10px 10px 34px 34px;
+  padding:15px 15px 200px 34px;
   height: auto;
   margin: auto;
   margin-top: 10px;
-  width: 60%;
+  width: 80%;
   font-family: 'Alegreya', serif;
   font-size: 1.4em;
   color: #222;
@@ -25,22 +25,25 @@
 
 .workoutContent{
   float:left;
-  padding-right: 70px;
-  padding-bottom: 10px;
-  display: block;
+}
+
+.test {
+  padding: 5px 5px 5px;
+  margin: 10px;
 }
 
 .editbtn {
     font-weight: bold;
     float: right;
     cursor: pointer;
-    font-size: 1em;
-    margin-right: 15px;
+    font-size: 0.7em;
+    margin-right: 10px;
 }
 
 .deletebtn {
-    font-weight: bold;
-    float: right;
-    cursor: pointer;
-    font-size: 1em;
+  padding: -5px -5px 1px 1px;
+  font-weight: bold;
+  float: right;
+  cursor: pointer;
+  font-size: 0.7em;
 }

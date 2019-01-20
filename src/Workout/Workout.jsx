@@ -42,30 +42,32 @@ class Workout extends Component {
 
   render(props){
     return(
-      <div className="workout fade-in">
+      <div className="container workout fade-in">
         <div>
-          <button className="btn btn-danger deletebtn"
+          <button className="col-2 btn btn-danger deletebtn"
                   onClick={() => this.handleRemoveWorkout(this.props.workoutId)}>
                   Delete
           </button>
-          <button className="btn btn-warning editbtn"
-                  onClick={() => this.handleEditWorkout(this.props.workoutId)}>
+          <button className="col-2 btn btn-warning editbtn disabled"
+                  onClick={() => {alert("Edit button is under construction! Sorry for the inconvenience.")} }>
+                                  {/*this.handleEditWorkout(this.props.workoutId) */}
                   Edit
           </button>
-          <div>
+          <div className="col-6 workoutContent">
             { this.state.editing ?
-              <div>
-                <input className="text"
-                        value={this.state.edited}
-                        onChange={this.handleEdit} />
-                <button className="btn btn-success"
-                        onClick={this.handleSave}>Save</button>
+            <div>
+              <input className="text" value={this.state.edited} onChange={this.handleEdit} />
+              <button className="btn btn-success"onClick={this.handleSave}> Save </button>
+            </div>
+            : <div>
+                <p>Workout: { this.props.workoutContent }</p>
+                <p>AvgHR (bpm): { this.props.avgHR } </p>
+                <p>Duration (min): { this.props.duration } </p>
+                <p>Calories burned: { this.props.calories }</p>
               </div>
-            : <p className="workoutContent">{ this.props.workoutContent }</p>
             }
           </div>
         </div>
-
       </div>
     )
   }

@@ -4,7 +4,8 @@ import Workout from './Workout/Workout';
 import WorkoutForm from './WorkoutForm/WorkoutForm';
 import { DB_CONFIG } from './Config/config.js';
 import firebase from 'firebase/app';
-import 'firebase/database'
+import 'firebase/database';
+
 
 class App extends Component {
   constructor(props) {
@@ -31,6 +32,9 @@ class App extends Component {
       previousWorkouts.push({
         id: snap.key,
         workoutContent: snap.val().workoutContent,
+        avgHR: snap.val().avgHR,
+        duration: snap.val().duration,
+        calories: snap.val().calories,
       })
 
       this.setState({
@@ -58,8 +62,6 @@ class App extends Component {
           previousWorkouts[i].id = snap.key;
         }
       }
-      //console.log(previousWorkouts)
-
 
       this.setState({
         workouts: previousWorkouts,
@@ -72,8 +74,9 @@ class App extends Component {
     return true
   }
 
-  addWorkout(workout) {
-    this.database.push().set({ workoutContent: workout });
+  addWorkout(workout, avgHR, duration, calories) {
+    this.database.push().set({ workoutContent: workout, avgHR: avgHR, duration: duration, calories: calories });
+    console.log(calories)
   }
 
   removeWorkout(workoutId) {
@@ -87,27 +90,34 @@ class App extends Component {
 
   render() {
     return (
-      <div className="workoutsWrapper">
+      <div>
         <div className="workoutsHeader">
-          <h1>React & Firebase Workout logger</h1>
+          <h1>React & Firebase WorkoutLogger</h1>
         </div>
-        <div className="workoutsBody">
-          {
-            this.state.workouts.map((workout) => {
-              return (
-                <Workout  workoutContent={workout.workoutContent}
-                          workoutId={workout.id}
-                          key={workout.id}
-                          removeWorkout={this.removeWorkout}
-                          editWorkout={this.editWorkout} />
-              )
-            })
-          }
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-8">
+              {
+                this.state.workouts.map((workout) => {
+                  return (
+                    <Workout  workoutContent={workout.workoutContent}
+                              avgHR={workout.avgHR}
+                              duration={workout.duration}
+                              calories={workout.calories}
+                              workoutId={workout.id}
+                              key={workout.id}
+                              removeWorkout={this.removeWorkout}
+                              editWorkout={this.editWorkout} />
+                  )
+                })
+              }
+            </div>
+            <div className="col-4">
+              <WorkoutForm addWorkout={this.addWorkout} />
+            </div>
+          </div>
         </div>
-        <div className="workoutsFooter">
-          <WorkoutForm addWorkout={this.addWorkout} />
-        </div>
-      </div>
+    </div>
     );
   }
 }

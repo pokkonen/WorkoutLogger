@@ -1,5 +1,11 @@
 .formWrapper{
     margin: auto;
+    border-style: solid;
+    height: 800px;
+    padding: 5px 0px 0 5px;
+    background: url('../Static/img/wood.jpg');
+    background-attachment: fixed;
+    background-size: contain;
 }
 
 .workoutButton{
@@ -22,8 +28,7 @@
 }
 
 .workoutInput{
-    width: 800px;
-    min-width: 800px;
+    width: auto;
     font-size: 1.3em;
     padding-left: 20px;
     border-top-left-radius: 4px;
@@ -32,10 +37,40 @@
     background-color: rgba(34,49,63,0.8);
     color: #fff;
     transition: 0.2s ease-out;
+    font-size: 0.9em;
 }
 
 .workoutInput:focus{
     background-color: #E4F1FE;
     color: #111;
     transition: 0.2s ease-in;
+}
+
+.addHeading {
+  color: white;
+  font-style: italic;
+}
+
+.addForm {
+  color: white;
+  font-size: 1.3em;
+  width: 60%;
+  cursor: pointer;
+}
+
+.customSelect {
+  width: 200px;
+  background-color: DodgerBlue;
+  color: white;
+  border: 6px solid transparent;
+}
+
+.Collapse {
+  padding: 10px;
+  color: white;
+  border: 2px solid;
+  border-radius: 3%;
+  background: url('../Static/img/dark-bricks.jpg');
+  background-attachment: fixed;
+  background-size: contain;
 }
