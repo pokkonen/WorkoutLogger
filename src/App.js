@@ -96,18 +96,20 @@ class App extends Component {
         </div>
         <div className="container-fluid">
           <div className="row">
-            <div className="col-8">
+            <div className="col-8 workoutsBody">
               {
                 this.state.workouts.map((workout) => {
                   return (
-                    <Workout  workoutContent={workout.workoutContent}
-                              avgHR={workout.avgHR}
-                              duration={workout.duration}
-                              calories={workout.calories}
-                              workoutId={workout.id}
-                              key={workout.id}
-                              removeWorkout={this.removeWorkout}
-                              editWorkout={this.editWorkout} />
+                    <div>
+                      <Workout  workoutContent={workout.workoutContent}
+                                avgHR={workout.avgHR}
+                                duration={workout.duration}
+                                calories={workout.calories}
+                                workoutId={workout.id}
+                                key={workout.id}
+                                removeWorkout={this.removeWorkout}
+                                editWorkout={this.editWorkout} />
+                    </div>
                   )
                 })
               }

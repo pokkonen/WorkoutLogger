@@ -70,11 +70,10 @@ class WorkoutForm extends Component {
 
   render() {
     return(
-      <div className="container formWrapper">
-        <div className="d-flex flex-column">
-          <h3 className="align-self-center addHeading">Add workout</h3>
-          <div className="p-2 align-items-center">
-            <div className="addForm text-white d-flex flex-column">
+      <div className="formWrapper">
+        <div className="formBody">
+            <h3 className="addHeading">Add workout</h3>
+            <div className="addForm text-white">
               Workout
               <Dropdown showDrop={this.showDrop}/>
               {this.state.showDrop ?
@@ -91,33 +90,32 @@ class WorkoutForm extends Component {
                           placeholder="Insert duration"
                           value={this.state.duration}
                           onChange={this.handleDuration} />
-              <br />
-              <button onClick={this.writeWorkout} className="align-self-center workoutButton">Add workout</button>
+              <br /><br />
+              <button onClick={this.writeWorkout} className="workoutButton">Add workout</button>
             </div>
-          </div>
-          <div className="container">
-            <button type="button" className="btn btn-info" onClick={this.showInfo}> ? </button>
-            {this.state.showInfo ?
-              <div className="Collapse">
-                This application counts calories burned based on workout and average heart rate.
-                For now calorie burn is simply calculated based on average burn 2200 calories per day.<br />
-                <ul>
-                  <li>Gym 1.2</li>
-                  <li>Jogging 1.6</li>
-                  <li>Cycling 1.4</li>
-                  <li>Swimming 1.4</li>
-                  <li>Hiking 1.3</li>
-                  <li>Walking 1.2</li>
-                </ul>
-                <ul>
-                  <li>HR zone 50-90</li>
-                  <li>HR zone 91-150</li>
-                  <li>HR zone 151+</li>
-                </ul>
-              </div>
-              : null
-            }
-          </div>
+            <div className="container infoBox">
+              <button type="button" className="btn btn-info" onClick={this.showInfo}> ? </button>
+              {this.state.showInfo ?
+                <div className="Collapse">
+                  This application counts calories burned based on workout and average heart rate.
+                  For now calorie burn is simply calculated based on average burn 2200 calories per day.<br />
+                  <ul>
+                    <li>Gym 1.2</li>
+                    <li>Jogging 1.6</li>
+                    <li>Cycling 1.4</li>
+                    <li>Swimming 1.4</li>
+                    <li>Hiking 1.3</li>
+                    <li>Walking 1.2</li>
+                  </ul>
+                  <ul>
+                    <li>HR zone 50-90</li>
+                    <li>HR zone 91-150</li>
+                    <li>HR zone 151+</li>
+                  </ul>
+                </div>
+                : null
+              }
+            </div>
         </div>
       </div>
     )

@@ -1,8 +1,9 @@
 .formWrapper{
     margin: auto;
     border-style: solid;
-    height: 800px;
-    padding: 5px 0px 0 5px;
+    height: 100%;
+    width: 80%;
+    padding: 15px 45px 0px 10px;
     background: url('../Static/img/wood.jpg');
     background-attachment: fixed;
     background-size: contain;
@@ -10,7 +11,7 @@
 
 .workoutButton{
     border: none;
-    margin: 0px;
+    margin: 0px 23px;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
     padding: 8px 24px;
@@ -73,4 +74,14 @@
   background: url('../Static/img/dark-bricks.jpg');
   background-attachment: fixed;
   background-size: contain;
+}
+
+.infoBox {
+  padding-top: 20px;
+}
+
+.formBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

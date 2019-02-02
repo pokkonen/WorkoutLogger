@@ -39,7 +39,10 @@ body {
 }
 
 .workoutsBody {
-  padding-top: 24px;
+  padding-top: 25px;
+  height: 750px;
+  overflow-y: scroll;
+
 }
 
 .workoutsFooter {
