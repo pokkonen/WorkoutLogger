@@ -1,4 +1,3 @@
-
 function calculate (workout, avgHR, duration) {
   const calsPerMin = 2200/(24*60);
   let calories;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './WorkoutForm.css';
 import Dropdown from './Dropdown';
 import calculate from './CalculateCals';
+import InfoBox from './InfoBox';
 
 class WorkoutForm extends Component {
   constructor(props) {
@@ -43,10 +44,8 @@ class WorkoutForm extends Component {
   };
 
   writeWorkout(e) {
-    console.log()
     this.props.addWorkout(this.state.newWorkoutContent, this.state.avgHR, this.state.duration,
                           calculate(this.state.newWorkoutContent, this.state.avgHR, this.state.duration));
-    console.log(this.state.calories)
     this.setState({
       avgHR: '',
       duration: '',
@@ -65,7 +64,6 @@ class WorkoutForm extends Component {
     this.setState({
       showInfo: !this.state.showInfo
     })
-    console.log(this.state.showInfo)
   }
 
   render() {
@@ -95,26 +93,7 @@ class WorkoutForm extends Component {
             </div>
             <div className="container infoBox">
               <button type="button" className="btn btn-info" onClick={this.showInfo}> ? </button>
-              {this.state.showInfo ?
-                <div className="Collapse">
-                  This application counts calories burned based on workout and average heart rate.
-                  For now calorie burn is simply calculated based on average burn 2200 calories per day.<br />
-                  <ul>
-                    <li>Gym 1.2</li>
-                    <li>Jogging 1.6</li>
-                    <li>Cycling 1.4</li>
-                    <li>Swimming 1.4</li>
-                    <li>Hiking 1.3</li>
-                    <li>Walking 1.2</li>
-                  </ul>
-                  <ul>
-                    <li>HR zone 50-90</li>
-                    <li>HR zone 91-150</li>
-                    <li>HR zone 151+</li>
-                  </ul>
-                </div>
-                : null
-              }
+              {this.state.showInfo ? <InfoBox /> : null}
             </div>
         </div>
       </div>

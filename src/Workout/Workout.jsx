@@ -8,12 +8,16 @@ class Workout extends Component {
 
     this.state = {
       editing: false,
-      edited: this.props.workoutContent
+      workout: this.props.workoutContent,
+      avgHR: this.props.avgHR,
+      duration: this.props.duration,
     }
 
     this.handleRemoveWorkout = this.handleRemoveWorkout.bind(this);
+    this.handleEditing = this.handleEditing.bind(this);
     this.handleEditWorkout = this.handleEditWorkout.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
+    this.handleEditAvgHR = this.handleEditAvgHR.bind(this);
+    this.handleEditDuration = this.handleEditDuration.bind(this);
     this.handleSave = this.handleSave.bind(this);
   }
 
@@ -21,15 +25,28 @@ class Workout extends Component {
     this.props.removeWorkout(id);
   }
 
-  handleEditWorkout() {
+  handleEditing() {
     this.setState({
       editing: !this.editing
     })
   }
 
-  handleEdit(e) {
+  handleEditWorkout(e) {
+    console.log(this.state.workout)
     this.setState({
-      edited: e.target.value
+      workout: e.target.value,
+    })
+  }
+
+  handleEditAvgHR(e) {
+    this.setState({
+      avgHR: e.target.value,
+    })
+  }
+
+  handleEditDuration(e) {
+    this.setState({
+      duration: e.target.value,
     })
   }
 
@@ -37,7 +54,7 @@ class Workout extends Component {
     this.setState({
       editing: false
     })
-    this.props.editWorkout(this.props.workoutId, this.state.edited);
+    this.props.editWorkout(this.props.workoutId, this.state.workout, this.state.avgHR, this.state.duration);
   }
 
   render(props){
@@ -48,15 +65,16 @@ class Workout extends Component {
                   onClick={() => this.handleRemoveWorkout(this.props.workoutId)}>
                   Delete
           </button>
-          <button className="col-2 btn btn-warning editbtn disabled"
-                  onClick={() => {alert("Edit button is under construction! Sorry for the inconvenience.")} }>
-                                  {/*this.handleEditWorkout(this.props.workoutId) */}
+          <button className="col-2 btn btn-warning editbtn"
+                  onClick={() => this.handleEditing(this.props.workoutId)}>
                   Edit
           </button>
           <div className="col-6 workoutContent">
             { this.state.editing ?
-            <div>
-              <input className="text" value={this.state.edited} onChange={this.handleEdit} />
+            <div className="">
+              <p>Workout: <input className="text floatRight" value={this.state.workout} onChange={this.handleEditWorkout} /></p>
+              <p>AvgHR:   <input className="text floatRight" value={this.state.avgHR} onChange={this.handleEditAvgHR} /></p>
+              <p>Duration:<input className="text floatRight" value={this.state.duration} onChange={this.handleEditDuration} /></p>
               <button className="btn btn-success"onClick={this.handleSave}> Save </button>
             </div>
             : <div>

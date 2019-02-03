@@ -5,6 +5,7 @@ import WorkoutForm from './WorkoutForm/WorkoutForm';
 import { DB_CONFIG } from './Config/config.js';
 import firebase from 'firebase/app';
 import 'firebase/database';
+import calculate from './WorkoutForm/CalculateCals';
 
 
 class App extends Component {
@@ -59,6 +60,9 @@ class App extends Component {
       for (let i=0; i < previousWorkouts.length; i++) {
         if (previousWorkouts[i].id === snap.key) {
           previousWorkouts[i].workoutContent = snap.val().workoutContent;
+          previousWorkouts[i].avgHR = snap.val().avgHR;
+          previousWorkouts[i].duration= snap.val().duration;
+          previousWorkouts[i].calories= snap.val().calories;
           previousWorkouts[i].id = snap.key;
         }
       }
@@ -76,16 +80,15 @@ class App extends Component {
 
   addWorkout(workout, avgHR, duration, calories) {
     this.database.push().set({ workoutContent: workout, avgHR: avgHR, duration: duration, calories: calories });
-    console.log(calories)
   }
 
   removeWorkout(workoutId) {
     this.database.child(workoutId).remove();
   }
 
-  editWorkout(workoutId, workout) {
-    console.log(this.state.workouts)
-    this.database.child(workoutId).update({ workoutContent: workout });
+  editWorkout(workoutId, workout, avgHR, duration) {
+    this.database.child(workoutId).update({ workoutContent: workout, avgHR: avgHR, duration: duration,
+      calories: calculate(workout, avgHR, duration)});
   }
 
   render() {
@@ -100,7 +103,7 @@ class App extends Component {
               {
                 this.state.workouts.map((workout) => {
                   return (
-                    <div>
+                    <div key={workout.id}>
                       <Workout  workoutContent={workout.workoutContent}
                                 avgHR={workout.avgHR}
                                 duration={workout.duration}

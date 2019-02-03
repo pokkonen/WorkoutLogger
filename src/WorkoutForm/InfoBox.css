@@ -1,0 +1,9 @@
+.Collapse {
+  padding: 10px;
+  color: white;
+  border: 2px solid;
+  border-radius: 3%;
+  background: url('../Static/img/dark-bricks.jpg');
+  background-attachment: fixed;
+  background-size: contain;
+}

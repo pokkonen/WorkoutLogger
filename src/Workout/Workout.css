@@ -3,7 +3,7 @@
   height: auto;
   margin: auto;
   margin-top: 10px;
-  width: 60%;
+  width: 70%;
   font-family: 'Alegreya', serif;
   font-size: 1.4em;
   color: #222;
@@ -46,4 +46,9 @@
   float: right;
   cursor: pointer;
   font-size: 0.7em;
+}
+
+.floatRight {
+  position: absolute;
+  right: 0px;
 }
