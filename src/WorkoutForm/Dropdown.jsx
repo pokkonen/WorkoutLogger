@@ -45,10 +45,11 @@ class Dropdown extends React.Component {
               className="select-box--items">
             {
               this.state.items.map(item => {
-                return <div key={item.id} onClick={() => this.selectItem(item)}
-                        className={this.state.selectedItem === item ? 'selected' : ''}>
-                        { item.value }
-                      </div>
+                return (
+                  <div className="select-box--selected-item" key={item.id} onClick={() => this.selectItem(item)}>
+                       { item.value }
+                  </div>
+                )
               })
             }
           </div>
@@ -57,5 +58,6 @@ class Dropdown extends React.Component {
     )
   }
 }
+
 
 export default Dropdown;

@@ -23,13 +23,16 @@
   vertical-align: middle;
 }
 
+.select-box--selected-item:hover {
+  background-color: rgba(128,0,0,0.2);
+}
+
 .select-box--items div{
-  border-bottom: 1px solid green;
-  border-left: 1px solid green;
-  border-right: 1px solid green;
-  padding: 6px;
+  border: 1px solid;
+  margin-top: 1px;
+  padding: 5px;
   padding-left: 20px;
-  background-color: blue;
+  background-color: rgba(34,49,63,0.8);
   font-size: 0.7em;
   width: 100%;
   text-align: center;
@@ -42,6 +45,7 @@
   padding: 0 5px 0px 0;
   display: inline-block;
   background: rgba(34,49,63,0.8);
+  background:;
 }
 
 .select-box--arrow-down {

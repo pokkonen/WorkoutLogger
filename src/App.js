@@ -93,36 +93,36 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <div className="workoutsHeader">
-          <h1>React & Firebase WorkoutLogger</h1>
-        </div>
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-8 workoutsBody">
-              {
-                this.state.workouts.map((workout) => {
-                  return (
-                    <div key={workout.id}>
-                      <Workout  workoutContent={workout.workoutContent}
-                                avgHR={workout.avgHR}
-                                duration={workout.duration}
-                                calories={workout.calories}
-                                workoutId={workout.id}
-                                key={workout.id}
-                                removeWorkout={this.removeWorkout}
-                                editWorkout={this.editWorkout} />
-                    </div>
-                  )
-                })
-              }
-            </div>
-            <div className="col-4">
-              <WorkoutForm addWorkout={this.addWorkout} />
+        <div>
+          <div className="workoutsHeader">
+            <h1>React & Firebase WorkoutLogger</h1>
+          </div>
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-8 workoutsBody">
+                {
+                  this.state.workouts.map((workout) => {
+                    return (
+                      <div key={workout.id}>
+                        <Workout  workoutContent={workout.workoutContent}
+                                  avgHR={workout.avgHR}
+                                  duration={workout.duration}
+                                  calories={workout.calories}
+                                  workoutId={workout.id}
+                                  key={workout.id}
+                                  removeWorkout={this.removeWorkout}
+                                  editWorkout={this.editWorkout} />
+                      </div>
+                    )
+                  })
+                }
+              </div>
+              <div className="col-4">
+                <WorkoutForm addWorkout={this.addWorkout} />
+              </div>
             </div>
           </div>
-        </div>
-    </div>
+      </div>
     );
   }
 }

@@ -5,7 +5,7 @@ class InfoBox extends Component {
   render() {
     return(
       <div className="Collapse">
-        This application counts calories burned based on workout and average heart rate.
+        This application counts calories burned based on workout and average heart rate. Each workout has individual factor.
         For now calorie burn is simply calculated based on average burn 2200 calories per day.<br />
         <ul>
           <li>Gym 1.2</li>

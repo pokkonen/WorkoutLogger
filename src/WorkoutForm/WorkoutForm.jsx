@@ -80,16 +80,18 @@ class WorkoutForm extends Component {
                 </div> :
                 null
               }
-              Avg HR(bpm) <input className="workoutInput" type="number"
-                          placeholder="Insert average heart rate"
-                          value={this.state.avgHR}
-                          onChange={this.handleAvgHR} />
-        Duration(minutes) <input className="workoutInput" type="number"
-                          placeholder="Insert duration"
-                          value={this.state.duration}
-                          onChange={this.handleDuration} />
-              <br /><br />
-              <button onClick={this.writeWorkout} className="workoutButton">Add workout</button>
+              <div>
+                Avg HR(bpm) <input className="workoutInput" type="number"
+                            placeholder="Insert average heart rate"
+                            value={this.state.avgHR}
+                            onChange={this.handleAvgHR} />
+          Duration(minutes) <input className="workoutInput" type="number"
+                            placeholder="Insert duration"
+                            value={this.state.duration}
+                            onChange={this.handleDuration} />
+                <br /><br />
+                <button onClick={this.writeWorkout} className="workoutButton">Add workout</button>
+              </div>
             </div>
             <div className="container infoBox">
               <button type="button" className="btn btn-info" onClick={this.showInfo}> ? </button>
