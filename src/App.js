@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import Workout from './Workout/Workout';
-import WorkoutForm from './WorkoutForm/WorkoutForm';
+import HomePage from './MainPages/HomePage';
+import Header from './Header';
+
 import { DB_CONFIG } from './Config/config.js';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import calculate from './WorkoutForm/CalculateCals';
-
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class App extends Component {
     this.removeWorkout = this.removeWorkout.bind(this);
     this.editWorkout = this.editWorkout.bind(this);
 
-    this.app = firebase.initializeApp(DB_CONFIG);
+    !firebase.apps.length ? this.app = firebase.initializeApp(DB_CONFIG) : this.app = firebase.app();
     this.database = this.app.database().ref().child('workouts');
 
     this.state = {
@@ -93,37 +93,14 @@ class App extends Component {
 
   render() {
     return (
-        <div>
-          <div className="workoutsHeader">
-            <h1>React & Firebase WorkoutLogger</h1>
-          </div>
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-8 workoutsBody">
-                {
-                  this.state.workouts.map((workout) => {
-                    return (
-                      <div key={workout.id}>
-                        <Workout  workoutContent={workout.workoutContent}
-                                  avgHR={workout.avgHR}
-                                  duration={workout.duration}
-                                  calories={workout.calories}
-                                  workoutId={workout.id}
-                                  key={workout.id}
-                                  removeWorkout={this.removeWorkout}
-                                  editWorkout={this.editWorkout} />
-                      </div>
-                    )
-                  })
-                }
-              </div>
-              <div className="col-4">
-                <WorkoutForm addWorkout={this.addWorkout} />
-              </div>
-            </div>
-          </div>
+      <div>
+        <Header />
+        <HomePage workouts={this.state.workouts}
+                  addWorkout={this.addWorkout}
+                  removeWorkout={this.removeWorkout}
+                  editWorkout={this.editWorkout} />
       </div>
-    );
+    )
   }
 }
 

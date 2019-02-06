@@ -1,0 +1,23 @@
+.welcomeBox {
+  display: block;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 250px;
+  padding: 15px 0 15px 0;
+  color: #5AE1F0;
+  background-color: black;
+  width: 70%;
+  margin-left: 15%;
+  border-radius: 50px;
+}
+
+.welcomeButton {
+  display: block;
+  border: 1px solid blue;
+  background: white;
+  max-width: 200px;
+  margin: auto;
+  margin-top: 50px;
+  font-size: 2.5em;
+  text-align: center;
+}

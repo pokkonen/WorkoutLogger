@@ -26,6 +26,7 @@
     background-color: #02BA85;
     color: #fff;
     transition: 0.2s ease-out;
+    cursor:pointer;
 }
 
 .workoutInput{
