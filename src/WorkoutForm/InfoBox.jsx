@@ -8,7 +8,7 @@ class InfoBox extends Component {
         This application counts calories burned based on workout and average heart rate. Each workout has individual factor.
         For now calorie burn is simply calculated based on average burn 2200 calories per day.<br />
         <ul>
-          <li>Gym 1.2</li>
+          <u>Factors: </u>
           <li>Jogging 1.6</li>
           <li>Cycling 1.4</li>
           <li>Swimming 1.4</li>

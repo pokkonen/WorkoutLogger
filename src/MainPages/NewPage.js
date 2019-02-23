@@ -8,17 +8,7 @@ class NewPage extends Component {
       <div>
         <Header />
         <div className="tempFont">
-          <h1>This is a new page</h1>
-          <br />
-          <ul>
-            <li> test 1 </li>
-            <li> test 2 </li>
-            <li> test 3 </li>
-          </ul>
-          <br />
-          <br />
-          <br />
-          <p> End </p>
+          <h1>New page for displaying information of the work out history.</h1>
         </div>
       </div>
     )

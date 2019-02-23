@@ -20,4 +20,9 @@
   margin-top: 50px;
   font-size: 2.5em;
   text-align: center;
+  color: #DCA117;
+  background: url('../Static/img/wood.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  border-radius: 50px;
 }
