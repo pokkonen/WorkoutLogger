@@ -1,4 +1,4 @@
-function calculate (workout, avgHR, duration) {
+function Calculate (workout, avgHR, duration) {
   const calsPerMin = 2200/(24*60);
   let calories;
   let factorHR = avgHR;
@@ -36,4 +36,4 @@ function calculate (workout, avgHR, duration) {
   return parseInt(calories);
 }
 
-export default calculate;
+export default Calculate;

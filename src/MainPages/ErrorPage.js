@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import Header from '../Header';
+import {Link} from "react-router-dom";
+import './ErrorPage.css';
 
 class ErrorPage extends Component {
   render() {
     return(
       <div>
-        <Header />
-        <h1 style={{color: "white"}}> Tähän tulee error sivu </h1>
+        <div className="errorBox">
+          <h1 style={{color: "white"}}> Page could not be found :( </h1> <br />
+          <Link to={"/home"} className="homeButton">Back to home page</Link>
+        </div>
       </div>
     )
   }

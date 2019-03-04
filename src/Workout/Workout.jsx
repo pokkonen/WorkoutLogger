@@ -71,7 +71,7 @@ class Workout extends Component {
           </button>
           <div className="col-6 workoutContent">
             { this.state.editing ?
-            <div className="">
+            <div>
               <p>Workout: <input className="text floatRight" value={this.state.workout} onChange={this.handleEditWorkout} /></p>
               <p>AvgHR:   <input className="text floatRight" value={this.state.avgHR} onChange={this.handleEditAvgHR} /></p>
               <p>Duration:<input className="text floatRight" value={this.state.duration} onChange={this.handleEditDuration} /></p>

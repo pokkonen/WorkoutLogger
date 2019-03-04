@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './WorkoutForm.css';
 import Dropdown from './Dropdown';
-import calculate from './CalculateCals';
+import Calculate from './CalculateCals';
 import InfoBox from './InfoBox';
 
 class WorkoutForm extends Component {
@@ -45,7 +45,7 @@ class WorkoutForm extends Component {
 
   writeWorkout(e) {
     this.props.addWorkout(this.state.newWorkoutContent, this.state.avgHR, this.state.duration,
-                          calculate(this.state.newWorkoutContent, this.state.avgHR, this.state.duration));
+                          Calculate(this.state.newWorkoutContent, this.state.avgHR, this.state.duration));
     this.setState({
       avgHR: '',
       duration: '',

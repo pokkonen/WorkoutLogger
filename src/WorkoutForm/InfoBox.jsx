@@ -16,9 +16,9 @@ class InfoBox extends Component {
           <li>Walking 1.2</li>
         </ul>
         <ul>
-          <li>HR zone 50-90</li>
-          <li>HR zone 91-150</li>
-          <li>HR zone 151+</li>
+          <li>HR zone 50-90  (1.2)</li>
+          <li>HR zone 91-150 (1.6)</li>
+          <li>HR zone 151+   (2)</li>
         </ul>
       </div>
     )

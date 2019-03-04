@@ -4,6 +4,8 @@ import {Link} from "react-router-dom";
 
 class WelcomePage extends Component {
   render() {
+
+
     return(
       <div>
         <div className="welcomeBox">
