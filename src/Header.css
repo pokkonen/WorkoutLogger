@@ -6,7 +6,7 @@
   font-size: 2.2em;
   color: #F4B350;
   font-family: 'Merriweather', serif;
-  padding:20px 0px 20px 0px;
+  padding: 20px 0px 20px 0px;
   margin-bottom: 6px;
   background-color: rgba(0,0,0,0.5);
   text-shadow: 3px 3px 10px #000;
@@ -32,5 +32,9 @@
 }
 
 .marginLeft {
-  margin-left: 640px;
+  margin: auto;
+}
+
+.marginRight {
+  margin-right: 20px;
 }

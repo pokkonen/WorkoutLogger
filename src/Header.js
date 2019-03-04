@@ -8,7 +8,7 @@ class Header extends Component {
       <div className="workoutsHeader">
         <h1 className="marginLeft">React & Firebase WorkoutLogger</h1>
         <Link to={"/home"} className="marginButton headerButton">Home</Link>
-        <Link to={"/new"} className="headerButton">New Page</Link>
+        <Link to={"/new"} className="headerButton marginRight">New Page</Link>
       </div>
     )
   }
