@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import './App.css';
-import HomePage from './MainPages/HomePage';
-import Header from './Header';
-
-import { DB_CONFIG } from './Config/config.js';
+import { Redirect } from 'react-router-dom';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import Rebase from 're-base';
 import 'firebase/database';
+
+import './App.css';
+import HomePage from './MainPages/HomePage';
+import Header from './Header';
+import { DB_CONFIG } from './Config/config.js';
 import calculate from './WorkoutForm/CalculateCals';
 
 let firebaseApp;
@@ -102,6 +103,9 @@ export default class App extends Component {
   }
 
   render() {
+    if (this.props.auth === false) {
+      return <Redirect to="/login" />
+    }
     return (
       <div>
         <Header />

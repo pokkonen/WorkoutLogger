@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Switch} from 'react-router';
 import {BrowserRouter, Route} from 'react-router-dom';
-import { Spinner, Intent } from '@blueprintjs/core';
+import { Spinner } from '@blueprintjs/core';
 
 import './index.css';
 import App from './App';
@@ -52,14 +52,15 @@ class Index extends React.Component {
         </div>
       )
     }
+    {/*Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method.
+    in App (at src/index.js:62)*/ }
     return(
         <BrowserRouter>
           <div>
             <Switch>
-              {/*<Header authenticated={this.state.authenticated} />*/}
               <Route exact path="/" component={WelcomePage} />
               <Route path="/new" component={NewPage} />
-              <Route path="/home" component={App} />
+              <Route path="/home" render={(props) => (<App {...props} auth={this.state.authenticated} />)} />
               <Route path="/login" component={Login} />
               <Route path="/logout" component={Logout} />
               <Route component={ErrorPage} />

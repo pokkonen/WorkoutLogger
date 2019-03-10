@@ -50,17 +50,43 @@ class Login extends Component {
       .then((providers) => {
         if (providers.length === 0) {
           // Create user
-          // Tee myöhemmin oikea rekisteröinti
+          this.createUser()
         } else if (providers.indexOf("password") === -1) {
           // they used facebook
-          this.loginForm.reset()
+          this.refs.loginForm.reset()
           this.toaster.show({ intent: Intent.DANGER, message: "Try facebook login."})
-          // Toaster ei näy
-          console.log("toimii")
         } else {
+          return firebaseApp.auth().signInWithEmailAndPassword(email, password);
           // sign user in
         }
+      })
+      .then((user) => {
+        if (user && user.user.email) {
+          this.refs.loginForm.reset()
+          this.setState({
+            redirect: true
+          })
+        }
+      })
+      .catch((error) => {
+        console.log("error")
+        this.toaster.show({ intent: Intent.WARNING, message: error.message })
+      })
+  }
 
+  createUser(e) {
+    e.preventDefault()
+    const newEmail = this.refs.newEmail.value;
+    const newPassword = this.refs.newPassword.value;
+
+    firebaseApp.auth().fetchProvidersForEmail(newEmail)
+      .then((providers) => {
+        if (providers.length !== 0) {
+          this.toaster.show({ intent: Intent.DANGER, message: "You already have a user, try login."})
+        } else {
+          console.log("user created")
+          return firebaseApp.auth().createUserWithEmailAndPassword(newEmail, newPassword)
+        }
       })
       .catch((error) => {
         console.log("error")
@@ -81,7 +107,8 @@ class Login extends Component {
           <button className="btn btn-primary col-sm-12"
                   onClick={() => { this.authWithFacebook() }}>Log In with Facebook</button>
         </div>
-        <form className="form-horizontal" onSubmit={(e) => { this.authWithEmailPassword(e) }} ref="formInput">
+        {/*             Login start           */}
+        <form className="form-horizontal" onSubmit={(e) => { this.authWithEmailPassword(e) }} ref="loginForm">
           <div className="form-group">
             <label className="control-label col-sm-4">Email</label>
               <div className="col-sm-12">
@@ -100,21 +127,21 @@ class Login extends Component {
             </div>
           </div>
         </form>
+        {/*             Login end           */}
 
+        {/*             Signup start           */}
         <h3 className="col-sm-12" style={{paddingTop: '30px'}}>If you don't have user yet, you can sign up below.</h3>
-          <form className="form-horizontal">
+          <form className="form-horizontal" onSubmit={(e) => { this.createUser(e) }}>
             <div className="form-group">
               <label className="control-label col-sm-4">Email</label>
                 <div className="col-sm-12">
-                  <input className="form-control" name="email" type="email" placeholder="Email"
-                    ref={(input) => {this.emailInput = input }} />
+                  <input className="form-control" name="email" type="email" placeholder="Email" ref="newEmail" />
                 </div>
             </div>
             <div className="form-group">
               <label className="control-label col-sm-2">Password</label>
                 <div className="col-sm-12">
-                  <input className="form-control" name="password" type="password" placeholder="Password"
-                    ref={(input) => {this.passwordInput = input }} />
+                  <input className="form-control" name="password" type="password" placeholder="Password" ref="newPassword" />
                 </div>
             </div>
             {/*
@@ -132,6 +159,7 @@ class Login extends Component {
               </div>
             </div>
           </form>
+          {/*             Signup end          */}
       </div>
     )
   }
