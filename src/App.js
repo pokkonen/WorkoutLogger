@@ -5,12 +5,26 @@ import Header from './Header';
 
 import { DB_CONFIG } from './Config/config.js';
 import firebase from 'firebase/app';
+import 'firebase/auth';
+import Rebase from 're-base';
 import 'firebase/database';
 import calculate from './WorkoutForm/CalculateCals';
 
-class App extends Component {
+let firebaseApp;
+
+if (!firebase.apps.length) {
+  firebaseApp = firebase.initializeApp(DB_CONFIG)
+} else {
+  firebaseApp = firebase.app();
+}
+
+const base = Rebase.createClass(firebaseApp.database())
+const facebookProvider = new firebase.auth.FacebookAuthProvider();
+
+export default class App extends Component {
   constructor(props) {
     super(props);
+
     this.addWorkout = this.addWorkout.bind(this);
     this.removeWorkout = this.removeWorkout.bind(this);
     this.editWorkout = this.editWorkout.bind(this);
@@ -74,10 +88,6 @@ class App extends Component {
     })
   }
 
-  shouldComponentUpdate() {
-    return true
-  }
-
   addWorkout(workout, avgHR, duration, calories) {
     this.database.push().set({ workoutContent: workout, avgHR: avgHR, duration: duration, calories: calories });
   }
@@ -104,4 +114,5 @@ class App extends Component {
   }
 }
 
-export default App;
+
+export { firebaseApp, base, facebookProvider };

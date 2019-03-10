@@ -4,16 +4,13 @@ import {Link} from "react-router-dom";
 
 class WelcomePage extends Component {
   render() {
-
-
     return(
       <div>
         <div className="welcomeBox">
           <h1>Welcome to WorkoutLogger!</h1>
-          <h3> Please click the button below to get to the app.</h3>
-          <h5> Login page coming soon... </h5>
+          <h3> Please login to use the App. </h3>
         </div>
-        <Link to={"/home"} className="welcomeButton">Jump in!</Link>
+        <Link to={"/login"} className="welcomeButton">Login</Link>
       </div>
     )
   }

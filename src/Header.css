@@ -26,6 +26,15 @@
   padding: 7px 15px 0 15px;
 }
 
+.headerButton2 {
+  font-size: 0.55em;
+  background-color: #ABB2B5;
+  text-shadow: 1px 1px 1px #4d2600;
+  border: 1px solid #4d2600;
+  border-radius: 5%;
+  padding: 7px 15px 0 15px;
+}
+
 .headerButton:hover {
   background-color: #d8870e;
   cursor:pointer;
