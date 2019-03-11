@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Switch} from 'react-router';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route, Redirect} from 'react-router-dom';
 import { Spinner } from '@blueprintjs/core';
 
 import './index.css';
@@ -14,6 +14,22 @@ import Logout from './MainPages/Logout';
 import * as serviceWorker from './serviceWorker';
 import { firebaseApp } from './App'
 
+class ProtectedRoute extends React.Component {
+  render() {
+    const { component: Component, ...props } = this.props
+    console.log(this.props.auth)
+
+    return (
+      <Route {...props} render={props => (
+          this.props.auth ?
+            <Component {...props} /> :
+            <Redirect to='/login' />
+        )}
+      />
+    )
+  }
+}
+
 class Index extends React.Component {
   constructor(props) {
     super(props);
@@ -22,25 +38,29 @@ class Index extends React.Component {
       loading: true,
     }
   }
+  _isMounted = false;
 
   componentDidMount() {
-    this.removeAuthListener = firebaseApp.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({
-          authenticated: true,
-          loading: false,
-        })
-      } else {
-        this.setState({
-          authenticated: false,
-          loading: false,
-        })
+    this._isMounted = true;
+    firebaseApp.auth().onAuthStateChanged((user) => {
+      if (this._isMounted) {
+        if (user) {
+          this.setState({
+            authenticated: true,
+            loading: false,
+          })
+        } else {
+          this.setState({
+            authenticated: false,
+            loading: false,
+          })
+        }
       }
     })
   }
 
   componentWillUnmount() {
-    this.removeAuthListener()
+    this._isMounted = false;
   }
 
   render() {
@@ -60,7 +80,8 @@ class Index extends React.Component {
             <Switch>
               <Route exact path="/" component={WelcomePage} />
               <Route path="/new" component={NewPage} />
-              <Route path="/home" render={(props) => (<App {...props} auth={this.state.authenticated} />)} />
+              {/* <Route path="/home" render={(props) => <App {...props} auth={this.state.authenticated} />} /> */}
+              <ProtectedRoute path="/home" render={(props) => <App {...props} auth={this.state.authenticated} />} />
               <Route path="/login" component={Login} />
               <Route path="/logout" component={Logout} />
               <Route component={ErrorPage} />

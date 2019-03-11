@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import Rebase from 're-base';
 import 'firebase/database';
 
 import './App.css';
@@ -19,7 +18,6 @@ if (!firebase.apps.length) {
   firebaseApp = firebase.app();
 }
 
-const base = Rebase.createClass(firebaseApp.database())
 const facebookProvider = new firebase.auth.FacebookAuthProvider();
 
 export default class App extends Component {
@@ -103,9 +101,9 @@ export default class App extends Component {
   }
 
   render() {
-    if (this.props.auth === false) {
-      return <Redirect to="/login" />
-    }
+    // if (this.props.auth === false) {
+    //   return <Redirect to="/login" />
+    // }
     return (
       <div>
         <Header />
@@ -119,4 +117,4 @@ export default class App extends Component {
 }
 
 
-export { firebaseApp, base, facebookProvider };
+export { firebaseApp, facebookProvider };

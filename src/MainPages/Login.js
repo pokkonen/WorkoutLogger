@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Toaster, Intent, Position, Spinner} from '@blueprintjs/core';
-import { firebaseApp, base, facebookProvider } from '../App';
-//import {Spinner} from 'react-spinkit';
-const mySpinner = <Spinner intent={Intent.PRIMARY} />
+import { Toaster, Intent, Position} from '@blueprintjs/core';
+import { firebaseApp, facebookProvider } from '../App';
 
 const loginStyles = {
   width: "100%",
