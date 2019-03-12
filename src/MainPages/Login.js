@@ -82,12 +82,21 @@ class Login extends Component {
         if (providers.length !== 0) {
           this.toaster.show({ intent: Intent.DANGER, message: "You already have a user, try login."})
         } else {
-          console.log("user created")
-          return firebaseApp.auth().createUserWithEmailAndPassword(newEmail, newPassword)
+            return firebaseApp.auth().createUserWithEmailAndPassword(newEmail, newPassword)
+        }
+      })
+      .then((user) => {
+        if (user && user.user.email) {
+          this.refs.loginForm.reset()
+          this.toaster.show({ intent: Intent.SUCCESS, message: "User created successfully! Logging in..."})
+          setTimeout(() =>
+            this.setState({
+              redirect: true
+            }), 2000
+          )
         }
       })
       .catch((error) => {
-        console.log("error")
         this.toaster.show({ intent: Intent.WARNING, message: error.message })
       })
   }
@@ -129,7 +138,7 @@ class Login extends Component {
 
         {/*             Signup start           */}
         <h3 className="col-sm-12" style={{paddingTop: '30px'}}>If you don't have user yet, you can sign up below.</h3>
-          <form className="form-horizontal" onSubmit={(e) => { this.createUser(e) }}>
+          <form className="form-horizontal" onSubmit={(e) => { this.createUser(e) }} ref="signupForm">
             <div className="form-group">
               <label className="control-label col-sm-4">Email</label>
                 <div className="col-sm-12">

@@ -14,18 +14,11 @@ import Logout from './MainPages/Logout';
 import * as serviceWorker from './serviceWorker';
 import { firebaseApp } from './App'
 
+
 class ProtectedRoute extends React.Component {
   render() {
-    const { component: Component, ...props } = this.props
-    console.log(this.props.auth)
-
-    return (
-      <Route {...props} render={props => (
-          this.props.auth ?
-            <Component {...props} /> :
-            <Redirect to='/login' />
-        )}
-      />
+    return(
+      firebaseApp.auth().currentUser ? <Route render={(props) => <App />} /> : <Redirect to="login" />
     )
   }
 }
@@ -72,16 +65,14 @@ class Index extends React.Component {
         </div>
       )
     }
-    {/*Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method.
-    in App (at src/index.js:62)*/ }
+
     return(
         <BrowserRouter>
           <div>
             <Switch>
               <Route exact path="/" component={WelcomePage} />
               <Route path="/new" component={NewPage} />
-              {/* <Route path="/home" render={(props) => <App {...props} auth={this.state.authenticated} />} /> */}
-              <ProtectedRoute path="/home" render={(props) => <App {...props} auth={this.state.authenticated} />} />
+              <ProtectedRoute path="/home" component={App} />
               <Route path="/login" component={Login} />
               <Route path="/logout" component={Logout} />
               <Route component={ErrorPage} />

@@ -12,7 +12,8 @@ class Logout extends Component {
   }
 
   componentDidMount() {
-    firebaseApp.auth().signOut().then((user) => {
+    firebaseApp.auth().signOut()
+    .then((user) => {
       this.setState({
         redirect: true
       })

@@ -1,40 +1,53 @@
-.workoutsHeader {
+.headerBar {
   display: flex;
-  flex: 1 1 5%;
-  min-height: 2.9em;
-  max-height: 2em;
-  font-size: 2em;
   color: #F4B350;
-  font-family: 'Merriweather', serif;
-  padding: 5px 0px 20px 0px;
-  margin-bottom: 6px;
+  /*flex: 1 1 5%;*/
+  flex-direction: row;
+  height: 6em;
   background-color: rgba(0,0,0,0.5);
   text-shadow: 3px 3px 10px #000;
+  justify-content: space-between;
+}
+
+.workoutsHeader {
+  flex-grow: 6;
+  font-size: 3em;
+  color: #F4B350;
+  font-family: 'Merriweather', serif;
+  margin: auto 10px;
+}
+
+.userInfo {
+  font-size: 1.4em;
+  display: flex;
+  flex-grow: 6;
+  align-items: center;
 }
 
 .headerButtonGroup {
-  margin-left: 600px;
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 30px;
 }
 
 .headerButton {
-  font-size: 0.7em;
+  font-size: 2em;
   background-color: #F4B350;
   text-shadow: 1px 1px 1px #4d2600;
   border: 1px solid #4d2600;
   border-radius: 5%;
-  padding: 10px 15px 0 15px;
-  margin-right: 20px;
-  margin-top: 10px;
+  padding: 7px;
 }
 
 .headerButton2 {
-  font-size: 0.7em;
+  font-size: 2em;
   background-color: #ABB2B5;
   text-shadow: 1px 1px 1px #4d2600;
   border: 1px solid #4d2600;
   border-radius: 5%;
-  padding: 10px 15px 0 15px;
-  margin-top: 10px;
+  padding: 7px;
 }
 
 .headerButton:hover {
