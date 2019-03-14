@@ -59,7 +59,7 @@ class Index extends React.Component {
   render() {
     if (this.state.loading === true) {
       return (
-        <div style={{ textAlign: "center", position: "absolute", top: "25%", left: "50%" }}>
+        <div style={{ textAlign: "", position: "absolute", top: "35%", left: "47%" }}>
           <h3>Loading</h3>
           <Spinner />
         </div>

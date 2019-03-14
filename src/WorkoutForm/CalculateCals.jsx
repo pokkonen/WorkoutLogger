@@ -3,14 +3,20 @@ function Calculate (workout, avgHR, duration) {
   let calories;
   let factorHR = avgHR;
 
-  if (avgHR <= 90) {
+  if (avgHR <= 70 && avgHR > 0) {
     factorHR = 1.2;
-  } else if (avgHR <= 150) {
+  } else if (avgHR > 70 && avgHR <= 110) {
+    factorHR = 1.4;
+  } else if (avgHR > 110 && avgHR <= 140) {
     factorHR = 1.6;
-  } else {
+  } else if (avgHR > 140 && avgHR <= 170) {
+    factorHR = 1.8;
+  } else if (avgHR > 170) {
     factorHR = 2;
+  } else {
+    factorHR = 0;
   }
-  //HR zones 50-90 -> 1.2, 91-150 -> 1.6, 151+ -> 2
+  //HR zones 50-70 -> 1.2,70-110 -> 1.4, 110-140 -> 1.6, 140-170 -> 1.8 180+ -> 2
   switch(workout) {
     case 'Gym':
       calories = calsPerMin * duration * factorHR * 2.6;

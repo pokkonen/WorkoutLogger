@@ -76,7 +76,7 @@ class WorkoutForm extends Component {
               <Dropdown showDrop={this.showDrop}/>
               {this.state.showDrop ?
                 <div>
-                  <br /> <br /> <br /> <br /> <br /> <br /> <br />
+                  <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
                 </div> :
                 null
               }
@@ -94,7 +94,7 @@ class WorkoutForm extends Component {
               </div>
             </div>
             <div className="container infoBox">
-              <button type="button" className="btn btn-info" onClick={this.showInfo}> ? </button>
+              <button type="button" className="btn btn-info" style={{marginBottom: "10px"}} onClick={this.showInfo}> ? </button>
               {this.state.showInfo ? <InfoBox /> : null}
             </div>
         </div>

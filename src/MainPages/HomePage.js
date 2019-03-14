@@ -1,14 +1,15 @@
 import React from 'react';
 import Workout from '../Workout/Workout';
 import WorkoutForm from '../WorkoutForm/WorkoutForm';
+import './Homepage.css';
 
 class HomePage extends React.Component {
   render() {
     return(
       <div>
         <div className="container-fluid">
-          <div className="row">
-            <div className="col-8 workoutsBody">
+          <div className="row parent scrollbarTest">
+            <div className="col-8 workoutsBody force-overflow">
               {
                 this.props.workouts.map((workout) => {
                   return (
@@ -26,7 +27,7 @@ class HomePage extends React.Component {
                 })
               }
             </div>
-            <div className="col-4">
+            <div className="col-4 addWorkout">
               <WorkoutForm addWorkout={this.props.addWorkout} />
             </div>
           </div>

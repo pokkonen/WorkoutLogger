@@ -100,9 +100,6 @@ export default class App extends Component {
   }
 
   render() {
-    // if (this.props.auth === false) {
-    //   return <Redirect to="/login" />
-    // }
     return (
       <div>
         <Header />

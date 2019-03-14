@@ -1,5 +1,32 @@
 .tempFont {
+  background-color: black;
   font-size: 40px;
   color: white;
-  margin-left: 100px;
+  margin: 15% 20% 20% 20%;
+  padding: 2%;
+  text-align: center;
+}
+
+.textAnimation {
+  position: relative;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  letter-spacing: 6px;
+  overflow: hidden;
+  background: linear-gradient(90deg, #240, #045, #240);
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: animate 3s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+
+@keyframes animate {
+  0% {
+    background-position: -500%;
+  }
+  100% {
+    background-position: 500%;
+  }
 }

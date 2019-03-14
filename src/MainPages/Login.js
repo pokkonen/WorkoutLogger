@@ -6,10 +6,11 @@ import { firebaseApp, facebookProvider } from '../App';
 const loginStyles = {
   width: "100%",
   maxWidth: "315px",
-  margin: "50px auto",
+  maxHeight: "80%",
+  margin: "10px auto",
   border: '4px solid #fff',
   borderRadius: "5px",
-  padding: "20px",
+  padding: "",
 }
 
 class Login extends Component {
@@ -67,8 +68,13 @@ class Login extends Component {
         }
       })
       .catch((error) => {
-        console.log("error")
-        this.toaster.show({ intent: Intent.WARNING, message: error.message })
+        if (error instanceof TypeError) {
+          this.toaster.show({ intent: Intent.WARNING, message: "User not found, please sign up!" })
+        } else {
+          console.log("error")
+          console.log(error)
+          this.toaster.show({ intent: Intent.WARNING, message: error.message })
+        }
       })
   }
 
