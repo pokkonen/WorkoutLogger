@@ -86,6 +86,7 @@ export default class App extends Component {
     })
   }
 
+
   addWorkout(workout, avgHR, duration, calories) {
     this.database.push().set({ workoutContent: workout, avgHR: avgHR, duration: duration, calories: calories });
   }
@@ -96,7 +97,7 @@ export default class App extends Component {
 
   editWorkout(workoutId, workout, avgHR, duration) {
     this.database.child(workoutId).update({ workoutContent: workout, avgHR: avgHR, duration: duration,
-      calories: calculate(workout, avgHR, duration)});
+                                            calories: calculate(workout, avgHR, duration)});
   }
 
   render() {

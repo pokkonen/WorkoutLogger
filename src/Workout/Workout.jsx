@@ -32,7 +32,6 @@ class Workout extends Component {
   }
 
   handleEditWorkout(e) {
-    console.log(this.state.workout)
     this.setState({
       workout: e.target.value,
     })

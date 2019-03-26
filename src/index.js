@@ -16,10 +16,19 @@ import { firebaseApp } from './App'
 
 
 class ProtectedRoute extends React.Component {
+
   render() {
-    return(
-      firebaseApp.auth().currentUser ? <Route render={(props) => <App />} /> : <Redirect to="login" />
-    )
+    if (firebaseApp.auth().currentUser) {
+      return(
+        <App />
+      )
+    }
+
+    if (!firebaseApp.auth().currentUser) {
+      return(
+         <Redirect to="login" />
+      )
+    }
   }
 }
 
@@ -27,33 +36,14 @@ class Index extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      authenticated: false,
       loading: true,
     }
   }
-  _isMounted = false;
 
   componentDidMount() {
-    this._isMounted = true;
-    firebaseApp.auth().onAuthStateChanged((user) => {
-      if (this._isMounted) {
-        if (user) {
-          this.setState({
-            authenticated: true,
-            loading: false,
-          })
-        } else {
-          this.setState({
-            authenticated: false,
-            loading: false,
-          })
-        }
-      }
+    this.setState({
+      loading: false,
     })
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
   }
 
   render() {
